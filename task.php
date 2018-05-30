@@ -6,10 +6,10 @@ if(isset($_POST["submit"]))
 {
 	$task=$_POST["task"];
 	$tdescription=$_POST["tdescription"];
-	$tcreated=$_POST["tcreated"];
+	$tcreated=date('d-M');
 	$tdate=$_POST["tdate"];
 	if(empty($task)){
-		echo "fill in the task";
+		echo "<script> alert('Fill in the task')</script>";
 	}else{
 	mysqli_query($con,"INSERT into tasks (task,tdescription,tcreated,tdate) values('$task','$tdescription','$tcreated','$tdate')");
 	header("location:task.php");}
@@ -42,10 +42,9 @@ $tasks=mysqli_query($con,"select * from tasks");
 		
 	<input type="text" name="task" class="form-control" placeholder="Task Name" ><br>
 	<input type="text" name="tdescription" class="form-control" placeholder="Task description" ><br>
-	<label>Created:</label>
-	<input type="text" name="tcreated" class="form-control-sm" >
 	<label>Task date:</label>
-	<input type="text" name="tdate" class="form-control-sm " ><br><br>
+	<input type="date" name="tdate" class="form-control "  ><br>
+	
 	<button type="submit" name="submit" class=" btn-primary">ADD task
 	</button>
 </div>
@@ -82,6 +81,7 @@ $tasks=mysqli_query($con,"select * from tasks");
 		</tr>
 	</thead>
 </table></div>
+
 </div>
 </body>
 </html>
