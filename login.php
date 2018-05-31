@@ -13,22 +13,22 @@ if(isset($_POST["login"])){
 		echo '<script> alert("Both fields are required") </script>';
 	}
 	else {
-	$user=$_POST["user"];
-    $pass=$_POST['pass'];
-    $pass=sha1($pass);
-    $q="SELECT * from register where user='$user' && pass='$pass'";
-    $result=mysqli_query($con,$q);
-    $ql=mysqli_num_rows($result);
+		$user=$_POST["user"];
+		$pass=$_POST['pass'];
+		$pass=sha1($pass);
+		$q="SELECT * from register where user='$user' && pass='$pass'";
+		$result=mysqli_query($con,$q);
+		$ql=mysqli_num_rows($result);
 
-if($ql>0){
-	$_SESSION['user']=$user;
-	header("location:task.php");
-}
-else{
-	echo "<script> alert('User not registered') </script>";
-	//header('location:signup.php');
-}
-}
+		if($ql>0){
+			$_SESSION['user']=$user;
+			header("location:task.php");
+		}
+		else{
+			echo "<script> alert('User not registered') </script>";
+	
+		}
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -48,17 +48,22 @@ else{
 					<div class="form-group">
 						<div>
 							<label>Username</label>
-						    <input type="text" name="user" class="form-control">
+							<input type="text" name="user" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-						    <input type="password" name="pass" class="form-control">
+							<input type="password" name="pass" class="form-control">
 						</div>
 
-							<input type="submit" class=" btn btn-primary" name="login" value="Login">
-						Not yet member? <a href="signup.php">Register here
+						<input type="submit" class=" btn btn-primary" name="login" value="Login">
+						Not yet member? <a href="signup.php">Register here</a>
 					</div>
 				</form>
 			</div>
+		</div>
+	</div>
 </body>
 </html>
+
+
+			
