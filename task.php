@@ -1,6 +1,10 @@
 <?php
 include("database.php");
 session_start();
+if(!isset($_SESSION["user"]))
+{
+	header ("location:login.php");
+}
 
 if(isset($_POST["submit"]))
 {
@@ -29,12 +33,28 @@ $tasks=mysqli_query($con,"select * from tasks");
 <head>
 	<title>tasks</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+	
 </head>
 <body>
 <div class="container">
 		<div class="row">
 			<div class="col-lg-6 m-auto" >
 				<h1 class="text-primary">TO DO APPLICATION</h1><br>
+				<?php
+				echo '<h2>Welcome-'.$_SESSION["user"].'</h2>';
+				?>
 
 <form method="Post" action="task.php" class="bg-faded">
 
@@ -43,9 +63,13 @@ $tasks=mysqli_query($con,"select * from tasks");
 	<input type="text" name="task" class="form-control" placeholder="Task Name" ><br>
 	<input type="text" name="tdescription" class="form-control" placeholder="Task description" ><br>
 	<label>Task date:</label>
-	<input type="date" name="tdate" class="form-control "  ><br>
-	
-	<button type="submit" name="submit" class=" btn-primary">ADD task
+	<div class='input-group date' id='datetimepicker7'>
+         <input type="text" name="tdate" class="form-control " >
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+    </div>
+    <button type="submit" name="submit" class=" btn-primary">ADD task
 	</button>
 </div>
 
@@ -83,5 +107,18 @@ $tasks=mysqli_query($con,"select * from tasks");
 </table></div>
 
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+        
+            $('#datetimepicker7').datetimepicker();
+            
+            
+            });
+       
+    
+</script>
+
+
+
 </body>
 </html>

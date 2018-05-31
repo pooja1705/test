@@ -6,11 +6,14 @@ if(isset($_POST["Submit"])){
 
 $user=$_POST["user"];
 $pass=$_POST["pass"];
+$pass=sha1($pass);
 $email=$_POST['email'];
 $mobile=$_POST['mobile'];
-$qn="insert  into register (user,pass,email,mobile) values ('$user','$pass','$email','$mobile')";
-	mysqli_query($con,$qn);
+$qn="INSERT into register (user,pass,email,mobile) values ('$user','$pass','$email','$mobile')";
+	if(mysqli_query($con,$qn)){
+	 echo "<script> alert('Registration done') </script>";
 	 header('location:login.php');
+	}
  }
 
 
