@@ -42,7 +42,7 @@ $error = 'this is the first error';
 array_push($errors, $error);
 
 $error = 'this is the second error';
-array_push = 'this is the second error';
+array_push($errors, $error);
 
 print_r($errors);
 Array([0] => this is the first error [1] => this is the second error);
