@@ -100,7 +100,7 @@ if(isset($_POST["Submit"])){
                     
                 }
                 else if(email1==""){
-                    document.getElementById('email1').innerHTML="** Please fill in the mobile number field";
+                    document.getElementById('email1').innerHTML="** Please fill in the email field";
                     return false;
                 }
                 
