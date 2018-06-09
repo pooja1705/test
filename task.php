@@ -18,8 +18,11 @@ if(isset($_POST["AddTask"])){
     $task=$_POST["task"];
     $task_description=$_POST["tdescription"];
     $task_date=$_POST["tdate"];
-    $image=$_FILES["image"]["name"];
+
+    //unique image name
+    $image=uniqid('img_').$_FILES["image"]["name"]; 
     $target="images/".basename($image);
+   
     if(empty($task)){
         echo "<script> alert('Fill in the task')</script>";
     }else{
