@@ -47,7 +47,12 @@ if(isset($_GET['delete'])){
         header("location:task.php");
     }
    
-//modify a task
+// update a task
+// get the new data you want to update,
+// eg, first task was name='dasdas', description = 'dasd' likewise and id=2
+// and you want to update description to 'daad' 
+// then , query = UPDATE table_name SET description = 'daad' where id=2,
+// you need to give condition also to search than task (here condition is id, it will update the task whose id is 2)
  if(isset($_GET['modify'])){
     $modify=$_GET['modify'];
         $q=mysqli_query($con,"select * from tasks where id=$modify");
